@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Chadao-VA — путь чая</title>
+<meta name="description" content="Chadao-VA — китайский чай напрямую с плантаций. Шесть категорий, дегустации в формате гунфу-ча, доставка.">
+<meta name="theme-color" content="#4a7c59">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --ink: #2b2118; --paper: #f7f2e7; --paper-2: #efe6d4; --jade: #4a7c59; --jade-dark: #35593f; --gold: #b08d4f; --muted: #7a6a55; --seal: #a83232; }
+  body { font-family: Georgia, 'Times New Roman', serif; background: var(--paper); color: var(--ink); line-height: 1.7; -webkit-tap-highlight-color: transparent; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  header { background: var(--paper); border-bottom: 1px solid #ddd2bd; position: sticky; top: 0; z-index: 10; padding: 16px 0; }
+  nav { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-size: 1.35rem; letter-spacing: 1px; color: var(--jade-dark); font-weight: bold; display: flex; align-items: center; gap: 10px; }
+  .logo .seal { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--seal); color: #fff; border-radius: 4px; font-size: 1rem; font-weight: bold; }
+  .logo .name { line-height: 1.1; }
+  .logo .name small { display: block; font-size: 0.62rem; letter-spacing: 2px; color: var(--muted); font-weight: normal; text-transform: uppercase; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 0.98rem; letter-spacing: .5px; transition: color .2s; }
+  nav a:hover { color: var(--jade-dark); }
+  .hero { background: radial-gradient(circle at 20% 20%, rgba(74,124,89,.18), transparent 55%), radial-gradient(circle at 85% 75%, rgba(176,141,79,.16), transparent 50%), var(--paper-2); text-align: center; padding: 110px 20px 95px; border-bottom: 1px solid #e0d5c0; }
+  .hero .hanzi { font-size: 3.4rem; color: var(--jade); letter-spacing: 8px; margin-bottom: 12px; }
+  .hero h1 { font-size: 2.5rem; font-weight: normal; margin-bottom: 16px; color: var(--ink); }
+  .hero h1 span { color: var(--jade-dark); }
+  .hero p { max-width: 660px; margin: 0 auto 32px; color: var(--muted); font-size: 1.08rem; }
+  .btn { display: inline-block; background: var(--jade); color: #fff; padding: 13px 34px; border-radius: 3px; text-decoration: none; font-size: 1rem; letter-spacing: .5px; transition: background .2s, transform .15s; }
+  .btn:hover { background: var(--jade-dark); transform: translateY(-2px); }
+  section { padding: 80px 0; }
+  h2 { text-align: center; font-size: 1.9rem; font-weight: normal; margin-bottom: 12px; }
+  h2::after { content: ''; display: block; width: 50px; height: 2px; background: var(--gold); margin: 14px auto 0; }
+  .section-desc { text-align: center; color: var(--muted); max-width: 680px; margin: 0 auto 50px; }
+  .teas { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+  .tea-card { background: #fffdf7; border: 1px solid #e6dcc8; border-radius: 6px; padding: 28px 24px; flex: 1 1 300px; max-width: 340px; transition: transform .2s, box-shadow .2s; }
+  .tea-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(43,33,24,.08); }
+  .tea-card .type { font-size: 1.7rem; color: var(--jade); margin-bottom: 6px; }
+  .tea-card h3 { font-size: 1.15rem; font-weight: normal; color: var(--ink); margin-bottom: 10px; }
+  .tea-card p { color: var(--muted); font-size: 0.95rem; }
+  .tea-card .tag { display: inline-block; margin-top: 14px; font-size: 0.8rem; letter-spacing: .5px; color: var(--gold); border: 1px solid var(--gold); border-radius: 20px; padding: 3px 12px; }
+  .culture { background: var(--paper-2); border-top: 1px solid #e0d5c0; border-bottom: 1px solid #e0d5c0; }
+  .culture-block { display: flex; gap: 50px; align-items: flex-start; flex-wrap: wrap; }
+  .culture-text { flex: 1 1 520px; }
+  .culture-text p { margin-bottom: 16px; color: #4f4335; }
+  .culture-text strong { color: var(--jade-dark); }
+  .steps { flex: 1 1 300px; background: #fffdf7; border: 1px solid #e6dcc8; border-radius: 6px; padding: 28px; }
+  .steps h3 { font-weight: normal; font-size: 1.1rem; margin-bottom: 18px; color: var(--jade-dark); }
+  .step { display: flex; gap: 14px; margin-bottom: 16px; }
+  .step:last-child { margin-bottom: 0; }
+  .step .num { flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--jade); color: #fff; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+  .step p { font-size: 0.93rem; color: var(--muted); margin: 0; }
+  .quote { text-align: center; padding: 70px 20px; }
+  .quote blockquote { font-size: 1.35rem; font-style: italic; color: var(--jade-dark); max-width: 720px; margin: 0 auto 14px; }
+  .quote cite { color: var(--muted); font-size: 0.95rem; font-style: normal; }
+  #order { background: #fffdf7; border-top: 1px solid #e6dcc8; }
+  form { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+  input, select, textarea { padding: 13px 14px; background: var(--paper); border: 1px solid #d8cbb2; border-radius: 3px; font-size: 1rem; font-family: inherit; color: var(--ink); transition: border-color .2s; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--jade); }
+  button { padding: 14px; background: var(--jade); color: #fff; border: none; border-radius: 3px; font-size: 1rem; font-family: inherit; letter-spacing: .5px; cursor: pointer; transition: background .2s; }
+  button:hover { background: var(--jade-dark); }
+  button:disabled { background: var(--muted); cursor: wait; }
+  #formMsg { color: var(--jade-dark); text-align: center; font-weight: bold; min-height: 1.5em; }
+  footer { background: var(--ink); color: #b9ab97; text-align: center; padding: 34px 0; font-size: 0.88rem; }
+  footer a { color: #d8cbb2; text-decoration: none; }
+  footer a:hover { color: #fff; }
+  footer .brand { color: #fff; font-size: 1rem; letter-spacing: 1px; }
+  @media (max-width: 640px) { .hero .hanzi { font-size: 2.4rem; letter-spacing: 5px; } .hero h1 { font-size: 1.8rem; } nav { flex-direction: column; gap: 10px; } nav ul { gap: 16px; flex-wrap: wrap; justify-content: center; } .culture-block { gap: 30px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <span class="seal">茶</span>
+        <span class="name">Chadao-VA<small>путь чая</small></span>
+      </div>
+      <ul>
+        <li><a href="#teas">Чаи</a></li>
+        <li><a href="#culture">Культура</a></li>
+        <li><a href="#order">Заказать</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hanzi">茶道</div>
+  <h1><span>Chadao-VA</span> — путь китайского чая</h1>
+  <p>Шесть категорий, десятки сортов и целая философия в одной чашке. Мы привозим чай напрямую с плантаций Юньнани, Фуцзяни и Чжэцзяна.</p>
+  <a href="#order" class="btn">Записаться на дегустацию</a>
+</div>
+
+<section id="teas">
+  <div class="container">
+    <h2>Шесть категорий чая</h2>
+    <p class="section-desc">В Китае чай делят не по цвету напитка, а по степени ферментации листа. Вот главные семьи — от самых лёгких до самых выдержанных.</p>
+    <div class="teas">
+      <div class="tea-card"><div class="type">绿茶</div><h3>Зелёный чай</h3><p>Не ферментируется. Свежий, травянистый, с лёгкой горчинкой. Классика — Лун Цзин и Би Ло Чунь.</p><span class="tag">0% ферментации</span></div>
+      <div class="tea-card"><div class="type">白茶</div><h3>Белый чай</h3><p>Минимальная обработка, только почки и молодые листья. Мягкий, медовый, с цветочным ароматом.</p><span class="tag">5–10%</span></div>
+      <div class="tea-card"><div class="type">黄茶</div><h3>Жёлтый чай</h3><p>Редкая категория с «томлением» листа. Бархатистый вкус, почти без горечи. Цзюнь Шань Инь Чжэнь.</p><span class="tag">10–20%</span></div>
+      <div class="tea-card"><div class="type">乌龙茶</div><h3>Улун</h3><p>Полуферментированный. От лёгких цветочных до насыщенных обжаренных. Те Гуань Инь, Да Хун Пао.</p><span class="tag">30–70%</span></div>
+      <div class="tea-card"><div class="type">红茶</div><h3>Красный чай</h3><p>В Европе зовут «чёрным». Полная ферментация: солодовый, сладкий, с нотами сухофруктов. Дянь Хун.</p><span class="tag">80–90%</span></div>
+      <div class="tea-card"><div class="type">黑茶</div><h3>Пуэр</h3><p>Постферментированный, выдерживается годами. Землистый, глубокий, живой — как хорошее вино.</p><span class="tag">выдержка</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="culture" class="culture">
+  <div class="container">
+    <h2>Культура чаепития</h2>
+    <p class="section-desc">Гунфу-ча — это не просто способ заварить чай, а медитативный ритуал, где важны и посуда, и вода, и внимание к собеседнику.</p>
+    <div class="culture-block">
+      <div class="culture-text">
+        <p><strong>Гунфу</strong> переводится как «мастерство» или «работа над собой». Чай заваривают малыми порциями в маленьком чайнике или гайвани и проливают многократно — каждый пролив раскрывает новый слой вкуса.</p>
+        <p>В Китае чай сопровождает и деловые переговоры, и семейные вечера. Хозяин, наливая гостю, показывает уважение; гость, постучав пальцами по столу, благодарит. Эти мелочи — и есть культура.</p>
+        <p>В <strong>Chadao-VA</strong> мы проводим дегустации в формате гунфу: вы пробуете один и тот же лист в нескольких проливах и замечаете, как меняется аромат и послевкусие.</p>
+      </div>
+      <div class="steps">
+        <h3>Как проходит дегустация</h3>
+        <div class="step"><div class="num">1</div><p>Знакомство с сухим листом: цвет, форма, аромат.</p></div>
+        <div class="step"><div class="num">2</div><p>Прогрев посуды и первая заварка — «пробуждение» чая.</p></div>
+        <div class="step"><div class="num">3</div><p>3–5 проливов с короткими паузами, дегустация каждого.</p></div>
+        <div class="step"><div class="num">4</div><p>Разбор вкуса и подбор сорта, который подойдёт именно вам.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote">
+  <blockquote>«Чай — это искусство, которое нужно пить медленно».</blockquote>
+  <cite>— китайская чайная поговорка</cite>
+</div>
+
+<section id="order">
+  <div class="container">
+    <h2>Записаться на дегустацию</h2>
+    <p class="section-desc">Оставьте заявку — Chadao-VA свяжется с вами и подберёт удобное время.</p>
+    
+    <!-- ФОРМА ДЛЯ GITHUB PAGES (через Formspree) -->
+    <!-- ВАЖНО: замени ВАШ_ID на свой ID из formspree.io -->
+    <form id="orderForm" action="https://formspree.io/f/ВАШ_ID" method="POST">
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="text" name="contact" placeholder="Телефон или email" required>
+      <select name="tea" required>
+        <option value="">Какой чай интересен?</option>
+        <option>Зелёный чай</option>
+        <option>Белый чай</option>
+        <option>Жёлтый чай</option>
+        <option>Улун</option>
+        <option>Красный чай</option>
+        <option>Пуэр</option>
+        <option>Пока не знаю — подскажите</option>
+      </select>
+      <textarea name="comment" rows="4" placeholder="Комментарий (необязательно)"></textarea>
+      <button type="submit" id="submitBtn">Отправить заявку</button>
+      <p id="formMsg"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="brand">Chadao-VA · 茶道</p>
+    <p style="margin-top: 8px;">Китайский чай с доставкой. Путь чая начинается здесь.</p>
+    <p style="margin-top: 8px;">© 2026 Chadao-VA. Все права защищены.</p>
+  </div>
+</footer>
+
+<script>
+  // AJAX-отправка формы, чтобы страница не перезагружалась
+  const form = document.getElementById('orderForm');
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    msg.textContent = 'Отправляем...';
+
+    const data = new FormData(form);
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        msg.textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
+        form.reset();
+      } else {
+        msg.textContent = 'Что-то пошло не так. Попробуйте ещё раз.';
+      }
+    } catch (err) {
+      msg.textContent = 'Ошибка сети. Проверьте подключение.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
